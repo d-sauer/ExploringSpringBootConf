@@ -1,0 +1,17 @@
+# Gradle
+**/.gradle
+**/build/
+
+# Ignore IntelliJ files
+/.idea/
+**/*.iws
+**/*.ipr
+**/*.iml
+**/target/
+**/overlays/
+
+# Ignore Eclipse project files
+**/.settings/
+**/.project
+**/.classpath
+**/bin
