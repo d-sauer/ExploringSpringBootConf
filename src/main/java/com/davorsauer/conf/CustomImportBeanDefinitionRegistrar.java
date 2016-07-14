@@ -18,20 +18,23 @@ public class CustomImportBeanDefinitionRegistrar implements ImportBeanDefinition
 
     @Override
     public void setEnvironment(Environment environment) {
-        logger.info("3. setEnvironment");
+        logger.info("2. setEnvironment");
         this.environment = environment;
 
-        PropertiesUtil.listProeprtySources(environment);
-        PropertiesUtil.checkProperties(environment);
+        PropertiesUtil.listProeprtySources(logger, environment);
+        PropertiesUtil.checkProperties(logger, environment);
     }
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        logger.info("4. registerBeanDefinitions");
-        logger.info("5. expecting all properties are resolved");
+        logger.info("2. registerBeanDefinitions");
+        logger.info("2. expecting all properties are resolved");
 
-        PropertiesUtil.listProeprtySources(environment);
-        PropertiesUtil.checkProperties(environment);
+        PropertiesUtil.listProeprtySources(logger, environment);
+        PropertiesUtil.checkProperties(logger, environment);
+
+        logger.info("!! Do something based on property 'customA.property'={}", environment.getProperty("customA.property"));
+        logger.info("!! Do something based on property 'customB.property'={}", environment.getProperty("customB.property"));
     }
 
 

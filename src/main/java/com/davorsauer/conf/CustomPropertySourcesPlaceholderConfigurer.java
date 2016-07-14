@@ -26,21 +26,21 @@ public class CustomPropertySourcesPlaceholderConfigurer extends PropertySourcesP
         this.environment = environment;
         super.setEnvironment(environment);
 
-        PropertiesUtil.listProeprtySources(environment);
-        PropertiesUtil.checkProperties(environment);
+        PropertiesUtil.listProeprtySources(logger, environment);
+        PropertiesUtil.checkProperties(logger, environment);
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        logger.info("2. postProcessBeanFactory");
+        logger.info("1. postProcessBeanFactory");
 
-        PropertySource customPropertySource = new PropertiesPropertySource("customCProperties", PropertiesUtil.customProperties("customC.properties"));
+        PropertySource customPropertySource = new PropertiesPropertySource("customCProperties", PropertiesUtil.customProperties(logger, "customC.properties"));
         addLastPropertySource(customPropertySource);
 
         super.postProcessBeanFactory(beanFactory);
 
-        PropertiesUtil.listProeprtySources(environment);
-        PropertiesUtil.checkProperties(environment);
+        PropertiesUtil.listProeprtySources(logger, environment);
+        PropertiesUtil.checkProperties(logger, environment);
     }
 
 

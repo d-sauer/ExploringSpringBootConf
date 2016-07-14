@@ -16,17 +16,18 @@ import java.util.Properties;
  */
 public class PropertiesUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
 
-    public static void checkProperties(Environment environment) {
+    public static void checkProperties(Logger logger, Environment environment) {
         logger.info("PropertyA: {}", environment.getProperty("customA.property"));
+
+        logger.info("PropertyA: {}", environment.getProperty("customA2.property"));
 
         logger.info("PropertyB: {}", environment.getProperty("defaultB.property"));
 
         logger.info("PropertyC: {}", environment.getProperty("customC.property"));
     }
 
-    public static void listProeprtySources(Environment environment) {
+    public static void listProeprtySources(Logger logger, Environment environment) {
         ConfigurableEnvironment configurableEnvironment = (ConfigurableEnvironment) environment;
         configurableEnvironment.getPropertySources().forEach(propertySource -> {
             logger.info("  PropertySource: {}", propertySource.getName());
@@ -36,7 +37,7 @@ public class PropertiesUtil {
         });
     }
 
-    public static Properties customProperties(String fileName) {
+    public static Properties customProperties(Logger logger, String fileName) {
         ClassPathResource classPathResource = new ClassPathResource(fileName);
 
         final Properties properties = new Properties();
